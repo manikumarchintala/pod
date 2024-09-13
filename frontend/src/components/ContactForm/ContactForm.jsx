@@ -1,68 +1,95 @@
+import { useForm } from "react-hook-form";
 import label from "../../assets/contactlabel.svg";
 import name from "../../assets/Namelabel.svg";
 import email from "../../assets/emaillabel.svg";
 import subject from "../../assets/Messagelabel.svg";
 import "./ContactForm.css";
+import axios from "axios";
 import { useState } from "react";
 
 export default function Contact() {
-  const [enteredValues, setEnteredValues] = useState({
-    name: "",
-    email: "",
-    subject: "",
-  });
-  function handleInputChange(identifier, value) {
-    setEnteredValues((prevVal) => ({ ...prevVal, [identifier]: value }));
-  }
+  const [submitStatus, setSubmitStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handlesubmit(event) {
-    event.preventDefault();
-    console.log(enteredValues);
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    try {
+      const response = await axios.post("http://localhost:6500/", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        setSubmitStatus("Success! Your message has been sent.");
+        reset(); // Clear form fields after submission
+      } else {
+        setSubmitStatus("Error! Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setSubmitStatus("Error! Something went wrong.");
+    } finally {
+      setIsSubmitting(false); // End submitting
+    }
+  };
+
   return (
     <div className="contactform">
       <div className="formlabelholder">
-        <img src={label} alt="" />
+        <img src={label} alt="Contact Form Label" />
         <br />
-        <p>Have any suggestions ?</p>
-        <p>just say me Hi.</p>
+        <p>Have any suggestions?</p>
+        <p>Just say Hi.</p>
       </div>
-      <form onSubmit={handlesubmit} className="formflex">
+      <form onSubmit={handleSubmit(onSubmit)} className="formflex">
         <div className="inputss">
           <div className="inputval">
-            <img src={name} alt="" />
+            <img src={name} alt="Name Label" />
             <input
               type="text"
-              onChange={(event) =>
-                handleInputChange("name", event.target.value)
-              }
-              value={enteredValues.name}
+              name="name"
+              {...register("name", { required: "required" })}
             />
+            {errors.name && <p>{errors.name.message}</p>}
           </div>
           <div className="inputval">
-            <img src={email} alt="" />
+            <img src={email} alt="Email Label" />
             <input
               className="middle"
-              type="text"
-              onChange={(event) =>
-                handleInputChange("email", event.target.value)
-              }
-              value={enteredValues.email}
+              type="email"
+              name="email"
+              {...register("email", {
+                required: "required",
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email",
+                },
+              })}
             />
+            {errors.email && <p>{errors.email.message}</p>}
           </div>
           <div className="inputval">
-            <img src={subject} alt="" />
+            <img src={subject} alt="Subject Label" />
             <input
               type="text"
-              onChange={(event) =>
-                handleInputChange("subject", event.target.value)
-              }
-              value={enteredValues.subject}
+              name="subject"
+              {...register("subject", { required: "required" })}
             />
+            {errors.subject && <p>{errors.subject.message}</p>}
           </div>
         </div>
         <div className="buttonflex">
-          <button>Submit</button>
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Sent" : "Submit"}
+          </button>
         </div>
       </form>
     </div>

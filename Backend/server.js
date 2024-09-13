@@ -1,7 +1,12 @@
 const fs = require("fs");
 const express = require("express");
+var cors = require("cors");
 require("dotenv").config();
 const app = express();
+const corsOption = {
+  origin: ["http://localhost:5173"],
+};
+app.use(cors(corsOption));
 const nodemailer = require("nodemailer");
 const path = require("path");
 const PORT = process.env.PORT || 6500;
@@ -52,8 +57,8 @@ app.post("/", (req, res) => {
   const mailOptions = {
     from: req.body.email,
     to: process.env.user,
-    subject: `Message  from ${req.body.email}:${req.body.subject}`,
-    text: req.body.message,
+    subject: `Message  from ${req.body.name}:${req.body.email}`,
+    text: req.body.subject,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
