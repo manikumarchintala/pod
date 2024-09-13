@@ -1,20 +1,23 @@
 const fs = require("fs");
 const express = require("express");
-var cors = require("cors");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
-const corsOption = {
-  origin: ["http://localhost:5173"],
-};
-app.use(cors(corsOption));
 const nodemailer = require("nodemailer");
 const path = require("path");
 const PORT = process.env.PORT || 6500;
-app.use(express.static("public"));
+
+const corsOptions = {
+  origin: ["http://localhost:5173"],
+};
+app.use(cors(corsOptions));
+
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
 app.use(express.json());
 
 let visitorCount = 0;
 const visitorFilePath = path.join(__dirname, "/visitorCount.txt");
+
 fs.readFile(visitorFilePath, "utf8", (err, data) => {
   if (err) {
     console.log("Error reading visitor count file:", err);
@@ -24,13 +27,15 @@ fs.readFile(visitorFilePath, "utf8", (err, data) => {
   }
 });
 app.use((req, res, next) => {
-  visitorCount++;
-  fs.writeFile(visitorFilePath, visitorCount.toString(), (err) => {
-    if (err) {
-      console.log("Error writing visitor count file:", err);
-    }
-  });
-  console.log(`Visitor count: ${visitorCount}`);
+  if (req.path !== "/visitorcount") {
+    visitorCount++;
+    fs.writeFile(visitorFilePath, visitorCount.toString(), (err) => {
+      if (err) {
+        console.log("Error writing visitor count file:", err);
+      }
+    });
+    console.log(`Visitor count: ${visitorCount}`);
+  }
   next();
 });
 
@@ -39,9 +44,8 @@ app.get("/visitorcount", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname + "/../frontend/index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
-//posting to the gmail server.
 app.post("/", (req, res) => {
   console.log(req.body);
   const transporter = nodemailer.createTransport({
@@ -54,23 +58,24 @@ app.post("/", (req, res) => {
       pass: process.env.pass,
     },
   });
+
   const mailOptions = {
     from: req.body.email,
     to: process.env.user,
-    subject: `Message  from ${req.body.name}:${req.body.email}`,
+    subject: `Message from ${req.body.name}: ${req.body.email}`,
     text: req.body.subject,
   };
+
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log("error");
-      res.send("error");
+      console.log("Error sending email:", error);
+      res.status(500).send("Error sending email.");
     } else {
-      console.log(`Email sent : + ${info.response}`);
-      res.send("sucess");
+      console.log(`Email sent: ${info.response}`);
+      res.send("Success! Your message has been sent.");
     }
   });
 });
-//listening port
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
