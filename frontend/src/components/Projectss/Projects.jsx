@@ -15,7 +15,7 @@ export default function Projects() {
             <img src={coming} alt="coming soon" />
           </div>
           <div className="gridtextflex">
-            <h4>Updated soon!!!</h4>
+            <h4>Updated soon!!!!</h4>
             <button className="blue" disabled>
               Code
             </button>
@@ -27,7 +27,7 @@ export default function Projects() {
           </div>
 
           <div className="gridtextflex">
-            <h4>Updated soon!!!!</h4>
+            <h4>will be Updated soon!!!</h4>
             <button className="pink" disabled>
               Code
             </button>
@@ -38,7 +38,7 @@ export default function Projects() {
             <img src={coming} alt="coming soon" />
           </div>
           <div className="gridtextflex">
-            <h4>Updated soon!</h4>
+            <h4>Updated soon!!</h4>
             <button className="yellow" disabled>
               Code
             </button>
