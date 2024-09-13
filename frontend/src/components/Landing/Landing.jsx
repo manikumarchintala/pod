@@ -8,8 +8,8 @@ export default function Landing() {
       </div>
       <div className="landingtext">
         <p>
-          I'll develop User Interfaces and land it on the Inter-webs.And loves
-          camping.
+          I'll craft code for the web and launch it into inter-webs . When I'm
+          not coding, you can find me enjoying the great outdoors.
         </p>
       </div>
     </div>

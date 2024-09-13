@@ -58,6 +58,10 @@ a.active{
 .gapper{
   height: var(--baseline);
 }
+.doublegapper{
+  height: calc(var(--baseline)*2);
+}
+
 @media(max-width:1000px){
   body{
     margin:0rem 1rem 0rem 3rem;

@@ -13,7 +13,7 @@ export default function About() {
           <br />
           <div className="textset">
             <h4>Mani Chintala</h4>
-            <p>Web Developer</p>
+            {/* <p>Web Developer</p> */}
           </div>
         </div>
         <div className="textbio">
