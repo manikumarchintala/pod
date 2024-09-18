@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 const nodemailer = require("nodemailer");
 const path = require("path");
-const PORT = process.env.PORT || 6500;
+const PORT = process.env.PORT || 5500;
 
 const corsOptions = {
   origin: ["http://localhost:5173"],

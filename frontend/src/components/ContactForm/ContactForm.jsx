@@ -55,6 +55,7 @@ export default function Contact() {
             <img src={name} alt="Name Label" />
             <input
               type="text"
+              aria-label="name"
               name="name"
               {...register("name", { required: "required" })}
             />
@@ -65,6 +66,7 @@ export default function Contact() {
             <input
               className="middle"
               type="email"
+              aria-label="email"
               name="email"
               {...register("email", {
                 required: "required",
@@ -80,6 +82,7 @@ export default function Contact() {
             <img src={subject} alt="Subject Label" />
             <input
               type="text"
+              aria-label="subject"
               name="subject"
               {...register("subject", { required: "required" })}
             />
