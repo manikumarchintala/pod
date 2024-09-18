@@ -8,7 +8,7 @@ const path = require("path");
 const PORT = process.env.PORT || 5500;
 
 const corsOptions = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5500"],
 };
 app.use(cors(corsOptions));
 
@@ -26,6 +26,7 @@ fs.readFile(visitorFilePath, "utf8", (err, data) => {
     console.log(`Initial visitor count: ${visitorCount}`);
   }
 });
+
 app.use((req, res, next) => {
   if (req.path !== "/visitorcount") {
     visitorCount++;
@@ -46,6 +47,7 @@ app.get("/visitorcount", (req, res) => {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
+
 app.post("/", (req, res) => {
   console.log(req.body);
   const transporter = nodemailer.createTransport({
@@ -76,6 +78,7 @@ app.post("/", (req, res) => {
     }
   });
 });
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
