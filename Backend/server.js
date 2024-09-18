@@ -8,7 +8,12 @@ const path = require("path");
 const PORT = process.env.PORT || 5500;
 
 const corsOptions = {
-  origin: ["http://localhost:5500"],
+  origin: [
+    "http://localhost:5500",
+    "https://www.manikumarchintala.com",
+    "https://manikumarchintala.com",
+    "http://3.94.219.203",
+  ],
 };
 app.use(cors(corsOptions));
 
