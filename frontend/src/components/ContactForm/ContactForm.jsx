@@ -21,11 +21,15 @@ export default function Contact() {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post("http://3.94.219.203", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post(
+        "https://www.manikumarchintala.com",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.status === 200) {
         setSubmitStatus("Success! Your message has been sent.");

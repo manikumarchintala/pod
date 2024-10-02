@@ -108,6 +108,15 @@ a.active{
 .topmost{
   grid-template-columns:  1fr 1fr repeat(2,0.3fr);
 }
+.inputss{
+  padding:0;
+}
+input{
+  width:9rem;
+}
+.middle{
+  width: 8rem;
+}
 .footergrid{
   gap: 1rem;
 }

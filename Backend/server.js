@@ -12,7 +12,6 @@ const corsOptions = {
     "http://localhost:5500",
     "https://www.manikumarchintala.com",
     "https://manikumarchintala.com",
-    "http://3.94.219.203",
   ],
 };
 app.use(cors(corsOptions));

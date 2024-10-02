@@ -40,7 +40,7 @@ export default function Experience() {
               <p>
                 Student Tech at <strong>Uhcl</strong>{" "}
               </p>
-              <p>Oct 2022 - Jun 2023</p>
+              <p>Nov 2022 - Jun 2023</p>
             </div>
           </div>
           <div className="innerflex">
@@ -51,7 +51,7 @@ export default function Experience() {
               <p>
                 Software Engineer at <strong>softizo</strong>
               </p>
-              <p>Jul 2018-Jul 2021</p>
+              <p>May 2018-Jun 2021</p>
             </div>
           </div>
         </div>
