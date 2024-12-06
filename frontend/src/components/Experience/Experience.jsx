@@ -27,7 +27,7 @@ export default function Experience() {
             </div>
             <div>
               <p>
-                Frontend developer at <strong>Intoto</strong>
+                Frontend developer at <strong>Alice</strong>
               </p>
               <p>Feb 2024</p>
             </div>
