@@ -27,7 +27,7 @@ export default function Experience() {
             </div>
             <div>
               <p>
-                Frontend developer at <strong>Alice</strong>
+                Software Developer at <strong>Alice</strong>
               </p>
               <p>Feb 2024</p>
             </div>
@@ -49,9 +49,9 @@ export default function Experience() {
             </div>
             <div>
               <p>
-                Software Engineer at <strong>softizo</strong>
+                Frontend Developer at <strong>softizo</strong>
               </p>
-              <p>May 2018-Jun 2021</p>
+              <p>May 2018-July 2022</p>
             </div>
           </div>
         </div>
