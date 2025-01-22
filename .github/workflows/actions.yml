@@ -18,7 +18,7 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
-          cd /home/runner/work/pod/Backend
+          cd /home/runner/work/pod/pod/Backend
           npm ci
 
       # Build the project
