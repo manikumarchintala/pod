@@ -20,11 +20,3 @@ jobs:
         run: |
           cd /home/runner/work/pod/pod/Backend
           npm ci
-
-      # Start the project
-      - name: Start the server
-        run: |
-          cd /home/runner/work/pod/pod/Backend
-          npm start &  # Run the server in the background
-          sleep 10     # Wait for 10 seconds (or however long you need to test the server)
-          kill %1      # Stop the background server process
