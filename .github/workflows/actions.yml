@@ -18,17 +18,17 @@ jobs:
       # Install dependencies for Backend
       - name: Install dependencies
         run: |
-          cd /home/runner/work/pod/<correct-directory-name>
+          cd /home/runner/work/pod/Backend
           npm ci
 
       # Build the project
       - name: Build project
         run: |
-          cd /home/runner/work/pod/<correct-directory-name>
+          cd /home/runner/work/pod/Backend
           npm run build --if-present
 
       # Start the project
       - name: Start project
         run: |
-          cd /home/runner/work/pod/<correct-directory-name>
+          cd /home/runner/work/pod/Backend
           npm start
