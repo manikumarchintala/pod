@@ -22,7 +22,7 @@ export default function Contact() {
     setIsSubmitting(true);
     try {
       const response = await axios.post(
-        "https://www.manikumarchintala.com",
+        "https://www.manikumarchintala.com/submit",
         data,
         {
           headers: {
