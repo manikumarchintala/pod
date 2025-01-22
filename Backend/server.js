@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
 });
 
-app.post("/", (req, res) => {
+app.post("/submit", (req, res) => {
   console.log(req.body);
   const transporter = nodemailer.createTransport({
     service: "gmail",
