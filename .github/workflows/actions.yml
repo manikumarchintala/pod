@@ -21,12 +21,6 @@ jobs:
           cd /home/runner/work/pod/pod/Backend
           npm ci
 
-      # Build the project
-      - name: Build project
-        run: |
-          cd /home/runner/work/pod/Backend
-          npm run build --if-present
-
       # Start the project
       - name: Start project
         run: |
